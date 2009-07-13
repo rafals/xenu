@@ -41,7 +41,7 @@ def tag(t):
     return base_tag(t, *args, **kwargs)
   return new_tag
 
-# all tags from HTML 4 and HTML 5 from http://www.w3schools.com/tags/html5.asp
+# all HTML 4 and HTML 5 tags from http://www.w3schools.com/tags/html5.asp
 all_tags = ['a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside', 'audio', 'b', 'base',
         'basefont', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite',
         'code', 'col', 'colgroup', 'command', 'datagrid', 'datalist', 'datetemplate', 'dd', 'details',
