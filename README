@@ -78,3 +78,7 @@ o({'id': 'slider'}, p(name='BorderStyle', value='1'))
 # =>	<object id="slider">
 # =>	  <param name="BorderStyle" value="1"/>
 # =>	</object>
+
+*More details*
+
+Check the source. It's really pretty simple and has < 100 lines of code.
