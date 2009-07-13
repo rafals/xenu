@@ -1,6 +1,6 @@
 Python templating DSL
 
-samples:
+*Structure*
 
 html(
 	head(
@@ -21,6 +21,8 @@ html(
   </body>
 </html>
 
+*Attributes*
+
 html(body(div({'id': 'sample_id', 'class': 'sample_class'}, 'sample')))
 
 <html>
@@ -31,23 +33,17 @@ html(body(div({'id': 'sample_id', 'class': 'sample_class'}, 'sample')))
   </body>
 </html>
 
-a({'href': 'http://onet.pl'}, 'onet')
-
-<a href="http://onet.pl">
-  onet
-</a>
-
 a('onet', href='http://onet.pl')
 
 <a href="http://onet.pl">
   onet
 </a>
 
-a({'href': 'http://onet.pl'}, 'wp', href='http://wp.pl')
+a({'href': 'http://onet.pl'}, 'onet') == \
+a('onet', href='http://onet.pl') == \
+a({'href': 'http://wp.pl'}, 'onet', href='http://onet.pl') # => True
 
-<a href="http://wp.pl">
-  wp
-</a>
+*Loops*
 
 ul(li('python'), li('lisp')) == ul((li('python'), li('lisp'))) == ul([li('python'), li('lisp')]) # => True
 
@@ -68,5 +64,3 @@ ul([li(lang) for lang in languages])
     haskell
   </li>
 </ul>
-
-
