@@ -1,33 +1,30 @@
-def base_tag(tag, *args, **kwargs):
-  """funkcja bazowa dla wszystkich tagow html"""
-  
+def base_tag(tag, *args, **kwargs):  
   attributes = {}
   contents = []
   
-  # porzadkowanie danych wejsciowych
-  # pobranie atrybutow z hasha jako 1. argumentu
+  ## input processing
+  # getting attributes from first-arg-hash
   if len(args) and isinstance(args[0], dict):
     attributes = args[0]
-  # zawartosc
     contents = args[1:]
   else:
     contents = args
-  # pobranie z keyword-argumentow (w razie konfliktow z hashem wygrywaja keywordy)
+  # getting attributes from keyword-args (keyword-args beat first-arg-hash)
   if len(kwargs):
     for k in kwargs:
       attributes[k] = kwargs[k]
   
-  # generowanie htmla
+  ## html generating
   result = "<" + tag
-  # z argumentow
+  # attributes
   if len(attributes):
     result += " " + " ".join([k + '="' + attributes[k] + '"' for k in attributes])
   
   def tab(html):
-    """robienie wciec"""
+    """adds 2 spaces before each line"""
     return "\n".join(map(lambda line: "  " + line, html.split("\n")))
   
-  # z zawartosci  
+  # content  
   if len(contents):
     result += ">\n" + tab("\n".join(["\n".join(c) if isinstance(c, tuple) or isinstance(c, list) else str(c) for c in contents]))
     result += "\n</" + tag + ">"
@@ -36,7 +33,7 @@ def base_tag(tag, *args, **kwargs):
   return result
 
 def tag(t):
-  """tworzenie nowej funkcji-taga"""
+  """creates new tag-function"""
   def new_tag(*args, **kwargs):
     return base_tag(t, *args, **kwargs)
   return new_tag
@@ -57,8 +54,9 @@ popular_tags = ['html', 'head', 'body', 'title', 'meta', 'script', 'link', 'body
         'ol', 'li', 'h1', 'h2', 'h3', 'hr', 'br', 'img', 'a', 'pre', 'blockquote', 'button', 'form', 'input',
         'label', 'legend', 'fieldset', 'select', 'option']
 
+# tags = all_tags
 tags = popular_tags
 
-# umieszczenie w globalsach funkcji dla kazdego taga
+# creating global functions for each tag
 for t in tags:
   globals()[t] = tag(t)
