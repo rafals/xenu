@@ -1,0 +1,52 @@
+Python templating DSL
+
+samples:
+
+html(
+	head(
+		title('sample')),
+	body(
+		h1('sample')))
+
+<html>
+  <head>
+    <title>
+      sample
+    </title>
+  </head>
+  <body>
+    <h1>
+      sample
+    </h1>
+  </body>
+</html>
+
+html(body(div({'id': 'sample_id', 'class': 'sample_class'}, 'sample')))
+
+<html>
+  <body>
+    <div id="sample_id" class="sample_class">
+      sample
+    </div>
+  </body>
+</html>
+
+a({'href': 'http://onet.pl'}, 'onet')
+
+<a href="http://onet.pl">
+  onet
+</a>
+
+a('onet', href='http://onet.pl')
+
+<a href="http://onet.pl">
+  onet
+</a>
+
+a({'href': 'http://onet.pl'}, 'wp', href='http://wp.pl')
+
+<a href="http://wp.pl">
+  wp
+</a>
+
+
