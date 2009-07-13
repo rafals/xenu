@@ -1,4 +1,4 @@
-def tag(tag, *args, **kwargs):
+def base_tag(tag, *args, **kwargs):
   """funkcja bazowa dla wszystkich tagow html"""
   
   attributes = {}
@@ -35,15 +35,30 @@ def tag(tag, *args, **kwargs):
     result += "/>"  
   return result
 
-def create_tag(t):
+def tag(t):
   """tworzenie nowej funkcji-taga"""
   def new_tag(*args, **kwargs):
-    return tag(t, *args, **kwargs)
+    return base_tag(t, *args, **kwargs)
   return new_tag
 
-tags = ['html', 'head', 'title', 'script', 'link', 'body', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'div', 'span',
-        'img', 'br', 'hr', 'a', 'ul', 'li']
+# all tags from HTML 4 and HTML 5 from http://www.w3schools.com/tags/html5.asp
+all_tags = ['a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside', 'audio', 'b', 'base',
+        'basefont', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite',
+        'code', 'col', 'colgroup', 'command', 'datagrid', 'datalist', 'datetemplate', 'dd', 'details',
+        'dialog', 'dfn', 'dir', 'div', 'dl', 'dt', 'em', 'embed', 'event-source', 'fieldset', 'figure', 'font',
+        'footer', 'form', 'frame', 'frameset', 'head', 'header', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr',
+        'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'm', 'map',
+        'menu', 'meta', 'meter', 'nav', 'nest', 'noframes', 'noscript', 'oject', 'ol', 'optgroup', 'option',
+        'p', 'param', 'pre', 'progress', 'q', 'rule', 's', 'samp', 'script', 'section', 'select', 'small',
+        'source', 'span', 'strike', 'strong', 'style', 'sub', 'sup', 'table', 'tbody', 'td', 'textarea',
+        'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'tt', 'u', 'ul', 'var', 'video']
+
+popular_tags = ['html', 'head', 'body', 'title', 'meta', 'script', 'link', 'body', 'span', 'p', 'div', 'ul',
+        'ol', 'li', 'h1', 'h2', 'h3', 'hr', 'br', 'img', 'a', 'pre', 'blockquote', 'button', 'form', 'input',
+        'label', 'legend', 'fieldset', 'select', 'option']
+
+tags = popular_tags
 
 # umieszczenie w globalsach funkcji dla kazdego taga
 for t in tags:
-  globals()[t] = create_tag(t)
+  globals()[t] = tag(t)

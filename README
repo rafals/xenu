@@ -2,6 +2,7 @@ Python templating DSL
 
 *Structure*
 
+from xenu import *
 html(
 	head(
 		title('sample')),
@@ -64,3 +65,16 @@ ul([li(lang) for lang in languages])
 # =>	    haskell
 # =>	  </li>
 # =>	</ul>
+
+*Namespace conflicts and new tags creation*
+
+from xenu import tag
+
+o = tag('object')
+p = tag('param')
+
+o({'id': 'slider'},p(name='BorderStyle', value='1'))
+
+# =>	<object id="slider">
+# =>	  <param name="BorderStyle" value="1"/>
+# =>	</object>
