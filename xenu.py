@@ -29,7 +29,7 @@ def tag(tag, *args, **kwargs):
   
   # z zawartosci  
   if len(contents):
-    result += ">\n" + tab("\n".join(["\n".join(c) if isinstance(c, tuple) else str(c) for c in contents]))
+    result += ">\n" + tab("\n".join(["\n".join(c) if isinstance(c, tuple) or isinstance(c, list) else str(c) for c in contents]))
     result += "\n</" + tag + ">"
   else:
     result += "/>"  
@@ -42,7 +42,7 @@ def create_tag(t):
   return new_tag
 
 tags = ['html', 'head', 'title', 'script', 'link', 'body', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'div', 'span',
-        'img', 'br', 'hr', 'a']
+        'img', 'br', 'hr', 'a', 'ul', 'li']
 
 # umieszczenie w globalsach funkcji dla kazdego taga
 for t in tags:

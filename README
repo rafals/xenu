@@ -49,4 +49,24 @@ a({'href': 'http://onet.pl'}, 'wp', href='http://wp.pl')
   wp
 </a>
 
+ul(li('python'), li('lisp')) == ul((li('python'), li('lisp'))) == ul([li('python'), li('lisp')]) # => True
+
+languages = ['python', 'lisp', 'erlang', 'haskell']
+ul([li(lang) for lang in languages])
+
+<ul>
+  <li>
+    python
+  </li>
+  <li>
+    lisp
+  </li>
+  <li>
+    erlang
+  </li>
+  <li>
+    haskell
+  </li>
+</ul>
+
 
